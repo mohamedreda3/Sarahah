@@ -33,7 +33,23 @@ class GetAllMessages
                 if (mysqli_num_rows($checkEmailQuery) > 0) {
                     $messages = [];
                     while ($dataAssocc = mysqli_fetch_assoc($checkEmailQuery)) {
-                        array_push($messages, $dataAssocc);
+
+                        $messId = $dataAssocc['id'];
+                        $replies = [];
+
+                        $getReply = mysqli_query($this->conn, "SELECT * FROM replies WHERE message_id = '$messId'");
+                        while ($reply = mysqli_fetch_assoc($getReply)) {
+
+                            $replyId = $reply['id'];
+                            $getReplyOnReply = mysqli_query($this->conn, "SELECT * FROM repliesonreplies WHERE reply_id = '$replyId'");
+                            $repliesOnReplies = [];
+                            while ($replyOnReply = mysqli_fetch_assoc($getReplyOnReply)) {
+                                array_push($repliesOnReplies, $replyOnReply);
+                            }
+                            array_push($replies, array("reply" => $reply, "repliesonreply" => $repliesOnReplies));
+                        }
+
+                        array_push($messages, array("messagecontent" => $dataAssocc, "replies" => $replies));
                     }
                     print_r(json_encode($messages));
                 } else {

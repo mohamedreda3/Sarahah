@@ -26,30 +26,35 @@ class Controller
             $reset = new ResetPassword($this->conn);
             $reset->sendEmail($data);
         } else if ($request == 'confirmcode') {
-            $reset = new ConfirmCode($this->conn);
-            $reset->confirm($data);
+            $confirm = new ConfirmCode($this->conn);
+            $confirm->confirm($data);
         } else if ($request == 'getallinformation') {
-            $createcategory = new GetAllInformation($this->conn);
-            $createcategory->exportInformation($token);
+            $export = new GetAllInformation($this->conn);
+            $export->exportInformation($token);
         } else if ($request == 'getmessages') {
-            $createcategory = new GetAllMessages($this->conn);
-            $createcategory->exportInformation($token);
+            $exportInformation = new GetAllMessages($this->conn);
+            $exportInformation->exportInformation($token);
         } else if ($request == 'sendmessage') {
             $sendMessage = new SendMessage($this->conn);
             $sendMessage->sendMessage($data, $token);
         } else if ($request == 'changepassword') {
-            $createcategory = new Changepassword($this->conn);
-            $createcategory->sendData($data);
+            $sendData = new Changepassword($this->conn);
+            $sendData->sendData($data);
         } else if ($request == 'updatedata') {
             $createcategory = new UpdateData($this->conn);
             $createcategory->update($data, $token);
         } else if ($request == 'updatemessage') {
-            $createcategory = new UpdateMessage($this->conn);
-            $createcategory->update($data, $token);
+            $update = new UpdateMessage($this->conn);
+            $update->update($data, $token);
         } else if ($request == 'deletemessage') {
-            $createcategory = new DeleteMessage($this->conn);
-            $createcategory->update($data, $token);
+            $delete = new DeleteMessage($this->conn);
+            $delete->update($data, $token);
+        } else if ($request == 'replyonmessage') {
+            $sendReply = new ReplyOnMessage($this->conn);
+            $sendReply->sendReply($data, $token);
+        } else if ($request == 'replyonreply') {
+            $sendReply = new ReplyOnReply($this->conn);
+            $sendReply->sendReply($data, $token);
         }
     }
-    // changepassword
 }

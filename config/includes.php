@@ -17,3 +17,5 @@ require_once './models/sendmessage.php';
 require_once './models/getmessages.php';
 require_once './models/updatemessage.php';
 require_once './models/Deletemessage.php';
+require_once './models/replyonmessage.php';
+require_once './models/replyonreply.php';

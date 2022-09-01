@@ -158,6 +158,21 @@ else if ($controlRequest == 'deletemessage') {
         }
     }
 }
-
-
-    // else if ($request == 'updatemessageprivately') {
+//Send reply on message
+//  ------------------------------------------------------
+else if ($controlRequest == 'replyonmessage') {
+    $bearerToken = '';
+    if (isset(getallheaders()['Authorization'])) {
+        $bearerToken = (trim(explode('Bearer', getallheaders()['Authorization'])[1]));
+    }
+    $conroller->processRequest($controlRequest, $data, $bearerToken);
+}
+//Send reply on reply
+//  ------------------------------------------------------
+else if ($controlRequest == 'replyonreply') {
+    $bearerToken = '';
+    if (isset(getallheaders()['Authorization'])) {
+        $bearerToken = (trim(explode('Bearer', getallheaders()['Authorization'])[1]));
+    }
+    $conroller->processRequest($controlRequest, $data, $bearerToken);
+}
