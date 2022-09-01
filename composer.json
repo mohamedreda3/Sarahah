@@ -1,0 +1,8 @@
+{
+    "require": {
+        "firebase/php-jwt": "^6.3",
+        "paragonie/sodium_compat": "^1.17",
+        "messagebird/php-rest-api": "^3.1",
+        "phpmailer/phpmailer": "^6.6"
+    }
+}
